@@ -3,96 +3,393 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Giới thiệu bản thân</title>
+  <meta name="theme-color" content="#17251e">
+  <meta name="description" content="Trang giới thiệu bản thân của Nguyễn Bình Dương, sinh viên năm nhất ngành Công nghệ Thông tin tại Trường Đại học Đại Nam.">
+  <title>Nguyễn Bình Dương — Trang cá nhân</title>
   <style>
+    :root {
+      color-scheme: dark;
+      --ink: #f7f5eb;
+      --muted: #c5c8bb;
+      --accent: #f4c95d;
+      --panel: rgba(20, 34, 29, 0.78);
+      --line: rgba(255, 255, 255, 0.14);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
+      min-width: 320px;
+      min-height: 100vh;
       margin: 0;
-      padding: 40px 20px;
-      font-family: Arial, sans-serif;
-      color: #263238;
-      background-color: #f1f5f9;
+      padding: 28px;
+      display: grid;
+      place-items: center;
+      color: var(--ink);
+      background: #17251e url("assets/background.webp") center / cover fixed;
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
     }
 
-    .card {
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 32px;
-      text-align: center;
-      background-color: white;
-      border-radius: 16px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-    }
-
-    .avatar {
-      width: 110px;
-      height: 110px;
-      margin: 0 auto 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      background-color: #dbeafe;
-      font-size: 48px;
-    }
-
-    h1 {
-      margin-bottom: 8px;
-      color: #2563eb;
-    }
-
-    h2 {
-      margin-top: 28px;
-      color: #334155;
-    }
-
-    p {
-      line-height: 1.6;
-    }
-
-    ul {
-      display: inline-block;
-      padding-left: 22px;
-      text-align: left;
-      line-height: 1.8;
+    body::before {
+      position: fixed;
+      z-index: -1;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(10, 25, 28, 0.78), rgba(20, 31, 23, 0.43) 52%, rgba(35, 29, 17, 0.66));
+      content: "";
     }
 
     a {
-      color: #2563eb;
-      text-decoration: none;
+      color: inherit;
     }
 
-    a:hover {
-      text-decoration: underline;
+    .page {
+      width: min(100%, 920px);
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: var(--panel);
+      box-shadow: 0 28px 90px rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .topbar {
+      min-height: 72px;
+      padding: 0 42px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .brand-mark {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 18px rgba(244, 201, 93, 0.8);
+    }
+
+    .topbar a {
+      color: var(--muted);
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: color 160ms ease;
+    }
+
+    .topbar a:hover,
+    .topbar a:focus-visible {
+      color: var(--accent);
+    }
+
+    .hero {
+      padding: 62px 72px 54px;
+      display: grid;
+      grid-template-columns: 1fr 190px;
+      align-items: center;
+      gap: 42px;
+    }
+
+    .eyebrow {
+      margin: 0 0 15px;
+      color: var(--accent);
+      font-size: 0.77rem;
+      font-weight: 750;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 570px;
+      margin: 0;
+      font-size: clamp(2.4rem, 6vw, 4.4rem);
+      letter-spacing: -0.055em;
+      line-height: 1.03;
+    }
+
+    h1 span {
+      color: var(--accent);
+    }
+
+    .intro {
+      max-width: 500px;
+      margin: 20px 0 0;
+      color: var(--muted);
+      font-size: 1.06rem;
+      line-height: 1.75;
+    }
+
+    .avatar-wrap {
+      position: relative;
+      width: 178px;
+      height: 178px;
+      padding: 7px;
+      justify-self: end;
+      border: 1px solid rgba(244, 201, 93, 0.58);
+      border-radius: 50%;
+      background: rgba(244, 201, 93, 0.12);
+      transform: rotate(4deg);
+    }
+
+    .avatar {
+      width: 100%;
+      height: 100%;
+      display: block;
+      border: 4px solid rgba(255, 255, 255, 0.85);
+      border-radius: 50%;
+      object-fit: cover;
+      transform: rotate(-4deg);
+    }
+
+    .sparkle {
+      position: absolute;
+      right: -17px;
+      bottom: 17px;
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: #24352b;
+      font-size: 1.2rem;
+      transform: rotate(-4deg);
+    }
+
+    .details {
+      padding: 0 72px 54px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .detail-card {
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.045);
+    }
+
+    .detail-card h2 {
+      margin: 0 0 12px;
+      font-size: 1rem;
+      letter-spacing: 0.01em;
+    }
+
+    .detail-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.94rem;
+      line-height: 1.75;
+    }
+
+    .interests {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+    }
+
+    .interest {
+      padding: 9px 13px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: #e7e6dc;
+      background: rgba(255, 255, 255, 0.055);
+      font-size: 0.84rem;
+    }
+
+    .contact {
+      padding: 24px 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      border-top: 1px solid var(--line);
+      background: rgba(0, 0, 0, 0.12);
+    }
+
+    .contact h2 {
+      margin: 0 0 5px;
+      font-size: 1rem;
+    }
+
+    .contact p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.87rem;
+    }
+
+    .contact-link {
+      padding: 11px 17px;
+      border-radius: 999px;
+      color: #252418;
+      background: var(--accent);
+      font-size: 0.88rem;
+      font-weight: 750;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: transform 160ms ease, background 160ms ease;
+    }
+
+    .contact-link:hover,
+    .contact-link:focus-visible {
+      background: #ffda77;
+      transform: translateY(-2px);
+    }
+
+    :focus-visible {
+      outline: 3px solid #fff;
+      outline-offset: 4px;
+    }
+
+    @media (max-width: 680px) {
+      body {
+        padding: 16px;
+        background-attachment: scroll;
+      }
+
+      .page {
+        border-radius: 22px;
+      }
+
+      .topbar {
+        min-height: 62px;
+        padding: 0 22px;
+      }
+
+      .hero {
+        padding: 42px 26px 36px;
+        grid-template-columns: 1fr 112px;
+        gap: 20px;
+      }
+
+      .avatar-wrap {
+        width: 108px;
+        height: 108px;
+      }
+
+      .sparkle {
+        right: -12px;
+        bottom: 5px;
+        width: 34px;
+        height: 34px;
+      }
+
+      .intro {
+        font-size: 0.98rem;
+      }
+
+      .details {
+        padding: 0 26px 36px;
+      }
+
+      .contact {
+        padding: 22px 26px;
+      }
     }
 
     @media (max-width: 480px) {
-      .card {
-        padding: 24px 18px;
+      body {
+        padding: 10px;
+      }
+
+      .hero {
+        padding: 34px 20px 28px;
+        grid-template-columns: 1fr;
+      }
+
+      .avatar-wrap {
+        grid-row: 1;
+        width: 94px;
+        height: 94px;
+        justify-self: start;
+      }
+
+      .details {
+        padding: 0 20px 28px;
+        grid-template-columns: 1fr;
+      }
+
+      .interests {
+        grid-column: auto;
+      }
+
+      .contact {
+        padding: 20px;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
       }
     }
   </style>
 </head>
 <body>
-  <main class="card">
-    <div class="avatar" aria-hidden="true">👋</div>
-    <h1>Xin chào, mình là [Tên của bạn]!</h1>
-    <p>Sinh viên năm nhất ngành [Tên ngành] tại [Tên trường].</p>
+  <main class="page">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark" aria-hidden="true"></span>TRANG CÁ NHÂN</div>
+      <a href="#about">Khám phá <span aria-hidden="true">↓</span></a>
+    </header>
 
-    <h2>Về mình</h2>
-    <p>
-      Mình đang bắt đầu học lập trình và muốn tạo ra những sản phẩm hữu ích.
-      Đây là trang web đầu tiên của mình!
-    </p>
+    <section class="hero" aria-labelledby="page-title">
+      <div>
+        <p class="eyebrow">Xin chào, rất vui được gặp bạn</p>
+        <h1>Mình là<br><span>Nguyễn Bình Dương.</span></h1>
+        <p class="intro">Sinh viên năm nhất ngành Công nghệ Thông tin tại Trường Đại học Đại Nam. Mình đang trên hành trình khám phá thế giới lập trình và biến những ý tưởng nhỏ thành sản phẩm hữu ích.</p>
+      </div>
+      <div class="avatar-wrap">
+        <img class="avatar" src="assets/avatar.jpg" alt="Ảnh đại diện của Nguyễn Bình Dương" width="164" height="164">
+        <span class="sparkle" aria-hidden="true">✦</span>
+      </div>
+    </section>
 
-    <h2>Sở thích</h2>
-    <ul>
-      <li>Học lập trình</li>
-      <li>Nghe nhạc</li>
-      <li>Đọc sách và khám phá điều mới</li>
-    </ul>
+    <section class="details" id="about" aria-label="Thông tin về mình">
+      <article class="detail-card">
+        <h2>🌱 Đang học hỏi</h2>
+        <p>Mình bắt đầu làm quen với lập trình và từng bước xây dựng nền tảng để tạo ra những điều có ích.</p>
+      </article>
+      <article class="detail-card">
+        <h2>✨ Một chút về mình</h2>
+        <p>Đây là trang web đầu tiên của mình — một góc nhỏ để chia sẻ hành trình học tập và những điều mình yêu thích.</p>
+      </article>
+      <div class="interests" aria-label="Sở thích">
+        <span class="interest">💻 Học lập trình</span>
+        <span class="interest">🎧 Nghe nhạc</span>
+        <span class="interest">📚 Đọc sách</span>
+        <span class="interest">🌍 Khám phá điều mới</span>
+      </div>
+    </section>
 
-    <h2>Liên hệ</h2>
-    <p>Email: <a href="mailto:emailcuaban@example.com">emailcuaban@example.com</a></p>
+    <footer class="contact">
+      <div>
+        <h2>Kết nối với mình</h2>
+        <p>Gửi lời chào qua email nhé!</p>
+      </div>
+      <a class="contact-link" href="mailto:emailcuaban@example.com">Gửi email <span aria-hidden="true">↗</span></a>
+    </footer>
   </main>
 </body>
 </html>
