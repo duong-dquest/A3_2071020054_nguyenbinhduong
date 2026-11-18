@@ -37,16 +37,40 @@
 
   // Làm nổi mục đang xem trên menu
   var links = document.querySelectorAll('.nav a');
+  var manualSelection = null;
+  function setActiveLink(id) {
+    links.forEach(function (a) {
+      var active = a.getAttribute('href') === '#' + id;
+      a.classList.toggle('active', active);
+      if (active) a.setAttribute('aria-current', 'location');
+      else a.removeAttribute('aria-current');
+    });
+  }
+  links.forEach(function (a) {
+    a.addEventListener('click', function () {
+      manualSelection = a.getAttribute('href').slice(1);
+      setActiveLink(manualSelection);
+    });
+  });
+  document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+    if (a.closest('.nav')) return;
+    a.addEventListener('click', function () { manualSelection = null; });
+  });
+  function resumeScrollTracking() { manualSelection = null; }
+  window.addEventListener('wheel', resumeScrollTracking, { passive: true });
+  window.addEventListener('touchstart', resumeScrollTracking, { passive: true });
+  window.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'PageDown' ||
+        e.key === 'PageUp' || e.key === 'Home' || e.key === 'End' || e.key === ' ') {
+      resumeScrollTracking();
+    }
+  });
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
+      if (manualSelection) return;
       entries.forEach(function (en) {
         if (!en.isIntersecting) return;
-        links.forEach(function (a) {
-          var active = a.getAttribute('href') === '#' + en.target.id;
-          a.classList.toggle('active', active);
-          if (active) a.setAttribute('aria-current', 'location');
-          else a.removeAttribute('aria-current');
-        });
+        setActiveLink(en.target.id);
       });
     }, { rootMargin: '-40% 0px -55% 0px' });
     ['top', 'about', 'projects', 'contact'].forEach(function (id) {

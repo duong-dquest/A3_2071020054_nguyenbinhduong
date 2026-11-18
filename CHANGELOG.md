@@ -8,6 +8,7 @@ Ngày: 18/11/2026
 - Bổ sung lời kêu gọi hành động, nhãn công nghệ dự án và liên hệ GitHub thay cho email mẫu.
 - Thêm hiệu ứng xuất hiện khi cuộn, chuyển động nhẹ cho ảnh đại diện và nút lên đầu trang.
 - Tôn trọng thiết lập giảm chuyển động; bổ sung liên kết bỏ qua điều hướng và trạng thái `aria-current`.
+- Giữ đúng mục menu sau khi bấm điều hướng; bổ sung phiên bản tài nguyên để tránh dùng CSS/JS cũ từ cache.
 - Cải thiện thông báo khi sao chép liên kết không thành công.
 
 **Kiểm tra:** xem trạng thái các phép thử tại `docs/evidence-index.md`; chưa tự ghi nhận kết quả chưa chạy.

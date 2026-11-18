@@ -5,7 +5,7 @@ Website giới thiệu cá nhân của sinh viên ngành Công nghệ Thông tin
 ## Xem trang
 
 - **GitHub repository:** [duong-dquest/trang-gioi-thieu-ban-than](https://github.com/duong-dquest/trang-gioi-thieu-ban-than)
-- **GitHub Pages:** [https://duong-dquest.github.io/trang-gioi-thieu-ban-than/](https://duong-dquest.github.io/trang-gioi-thieu-ban-than/) (đường dẫn dự kiến; cần bật Pages và xác nhận sau khi triển khai).
+- **GitHub Pages:** [https://duong-dquest.github.io/trang-gioi-thieu-ban-than/](https://duong-dquest.github.io/trang-gioi-thieu-ban-than/)
 
 ## Tính năng
 
@@ -49,7 +49,7 @@ Không cần cài dependency hoặc chạy lệnh build. Clipboard có thể ch�
 
 Các phép thử thủ công, trạng thái và minh chứng được theo dõi tại [docs/evidence-index.md](docs/evidence-index.md). Một số tương tác đã được thử trên trình duyệt cục bộ; các phép thử yêu cầu GitHub Pages vẫn chưa xác minh.
 
-- Chưa xác nhận GitHub Pages đã bật và URL demo đã triển khai phiên bản mới.
+- GitHub Pages đã hoạt động; quy trình deploy hiện báo thành công. Các kết quả kiểm thử giao diện trên URL live được ghi tại [docs/evidence-index.md](docs/evidence-index.md).
 - Chưa kiểm thử trên thiết bị di động thật, nhiều trình duyệt hoặc bằng Lighthouse.
 - Chưa có email liên hệ; hiện dùng liên kết GitHub thay vì địa chỉ email mẫu.
 - Nguồn/giấy phép của ảnh nền chưa được xác minh; cần bổ sung thông tin nguồn trước khi phát hành công khai.
