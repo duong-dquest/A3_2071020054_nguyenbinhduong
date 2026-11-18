@@ -4,12 +4,12 @@ Quy tắc: chưa thử thì ghi **Chưa kiểm tra**. Ảnh chụp phải cắt 
 
 | Mã | Tuyên bố | Phép thử | Kết quả thật | Minh chứng |
 |----|----------|----------|--------------|------------|
-| E1 | Menu cuộn tới đúng 4 mục và tô sáng mục đang xem | Bấm từng mục menu trên URL Pages | Đạt trên trình duyệt cục bộ; cả 4 mục (18/11/2026) | |
+| E1 | Menu cuộn tới đúng 4 mục và tô sáng mục đang xem | Bấm từng mục menu trên URL Pages | Đạt trên Pages; cả 4 mục (18/11/2026) | |
 | E2 | Ảnh đại diện và ảnh nền hiển thị | Mở URL Pages, xem tab Network (không 404) | Đạt trên Pages; cả hai ảnh tải được (18/11/2026) | |
 | E3 | `css/style.css` được tải trên Pages | Tab Network: trạng thái 200 | Đạt trên Pages; stylesheet đã tải (18/11/2026) | |
 | E4 | Liên kết liên hệ mở đúng hồ sơ GitHub | Bấm "Mở GitHub", xác nhận hồ sơ | Chưa kiểm tra | |
 | E5 | Không tràn ngang ở 1280 / 768 / 390 px | DevTools responsive, kiểm tra `scrollWidth` | Đạt trên Pages ở 320 / 390 / 768 / 1280px (18/11/2026) | |
-| E6 | URL Pages khớp phiên bản nộp | Đối chiếu commit triển khai và nội dung URL live | Đạt; workflow Pages deploy commit `9a460ce` thành công (18/11/2026) | |
+| E6 | URL Pages khớp phiên bản nộp | Đối chiếu commit triển khai và nội dung URL live | Đạt; workflow Pages deploy commit [`1aaa16c`](https://github.com/duong-dquest/trang-gioi-thieu-ban-than/commit/1aaa16c97a3a44ab4ec5b26a678e01e4b695f412) thành công (18/11/2026) | |
 | E7 | Link minh chứng mở được | Mở bằng cửa sổ ẩn danh | Chưa kiểm tra | |
 | E8 | Tab Dự án đổi nội dung | Bấm 2 tab; dùng phím ← → | Đạt trên Pages (18/11/2026) | |
 | E9 | Nút "Sao chép liên kết GitHub" hoạt động | Bấm nút, dán thử vào ô bất kỳ | Chưa kiểm tra | |
