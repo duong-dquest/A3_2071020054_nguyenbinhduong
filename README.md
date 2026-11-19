@@ -50,7 +50,7 @@ Không cần cài dependency hoặc chạy lệnh build. Clipboard có thể ch�
 
 ## Kiểm thử và giới hạn
 
-Các phép thử thủ công, trạng thái và minh chứng được theo dõi tại [docs/evidence-index.md](docs/evidence-index.md). Một số tương tác đã được thử trên trình duyệt cục bộ; các phép thử yêu cầu GitHub Pages vẫn chưa xác minh.
+Các phép thử giao diện và tương tác cơ bản đã được kiểm tra trên GitHub Pages; chi tiết từng phép thử và những giới hạn còn lại nằm tại [docs/evidence-index.md](docs/evidence-index.md).
 
 - GitHub Pages đã hoạt động. Các kết quả kiểm thử giao diện trên URL live được ghi tại [docs/evidence-index.md](docs/evidence-index.md).
 - Chưa kiểm thử trên thiết bị di động thật, nhiều trình duyệt hoặc bằng Lighthouse.
