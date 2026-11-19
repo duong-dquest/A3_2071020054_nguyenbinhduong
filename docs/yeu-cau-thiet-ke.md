@@ -3,8 +3,8 @@
 ## 4 câu trước khi code
 1. **Ai sẽ xem?** Giảng viên chấm bài, bạn học, nhà tuyển dụng thực tập.
 2. **Họ cần làm gì?** Biết tác giả là ai, xem dự án, liên hệ nhanh.
-3. **Website có gì?** Giới thiệu, Về mình (đang học, sở thích), Dự án, Liên hệ; một trang, có menu.
-4. **Kiểm tra bằng cách nào?** Các phép thử E1–E10 trong [evidence-index.md](evidence-index.md), chạy trên URL GitHub Pages.
+3. **Website có gì?** Giới thiệu, sáu sở thích nổi bật, Dự án AVATAR PARADE, demo bình chọn concept, Liên hệ; một trang, có menu.
+4. **Kiểm tra bằng cách nào?** Các phép thử E1–E18 trong [evidence-index.md](evidence-index.md), chạy cục bộ và trên URL GitHub Pages.
 
 Phạm vi: website tĩnh HTML5/CSS3 + JavaScript nhỏ, không có máy chủ, không thu thập dữ liệu.
 Tiêu chí chấp nhận: mọi liên kết và nút hoạt động trên URL Pages; hiển thị được ở 320, 768 và 1280 px.
@@ -34,3 +34,5 @@ Màn hình rộng              Màn hình hẹp
 - Có liên kết bỏ qua điều hướng, focus bàn phím dễ thấy và hỗ trợ giảm chuyển động.
 - Hiệu ứng xuất hiện khi cuộn, chuyển động ảnh nhẹ và nút lên đầu trang hỗ trợ khám phá nội dung.
 - Liên hệ hiện dùng GitHub vì chưa có địa chỉ email được xác nhận.
+- Sở thích trình bày thành lưới sáu thẻ theo chủ đề game, sáng tạo nội dung, công nghệ và âm nhạc.
+- AVATAR PARADE được mô tả là concept Roblox × TikTok LIVE; mô phỏng vote chỉ dùng để minh họa vòng chơi, không đại diện kết nối dịch vụ thật.

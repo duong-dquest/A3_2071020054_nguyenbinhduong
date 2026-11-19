@@ -1,6 +1,6 @@
 # Trang cá nhân — Nguyễn Bình Dương
 
-Website giới thiệu cá nhân của sinh viên ngành Công nghệ Thông tin tại Trường Đại học Đại Nam. Dự án được xây dựng bằng HTML, CSS và JavaScript thuần, không cần máy chủ hay cài đặt thư viện.
+Website giới thiệu Nguyễn Bình Dương, sinh viên ngành Công nghệ Thông tin yêu thích phát triển game, Roblox Studio và trải nghiệm trực tiếp có tương tác. Dự án được xây dựng bằng HTML, CSS và JavaScript thuần, không cần máy chủ hay cài đặt thư viện.
 
 ## Xem trang
 
@@ -13,9 +13,12 @@ Website giới thiệu cá nhân của sinh viên ngành Công nghệ Thông tin
 - Menu cố định, cuộn mượt và tự đánh dấu khu vực đang xem.
 - Hỗ trợ bàn phím: liên kết bỏ qua điều hướng, trạng thái focus rõ ràng và chuyển tab dự án bằng phím mũi tên.
 - Hiệu ứng xuất hiện khi cuộn, ảnh đại diện chuyển động nhẹ và nút lên đầu trang.
+- Sáu thẻ sở thích trình bày các mối quan tâm về game, Roblox Studio, TikTok LIVE, công nghệ, khởi nghiệp online và âm nhạc.
+- Dự án AVATAR PARADE được trình bày như concept Roblox × TikTok LIVE, với bình luận, chấm điểm, quà cổ vũ và luồng chơi tới bảng xếp hạng.
+- Bản demo bình chọn avatar tương tác: chọn thí sinh, gửi một lượt bình chọn và xem trạng thái cập nhật ngay trên trang.
 - Tôn trọng cài đặt **Reduce motion** của hệ điều hành.
-- Sao chép liên kết GitHub; có thông báo nếu trình duyệt không cấp quyền clipboard.
-- Thẻ dự án dẫn tới repository thật; thẻ công nghệ giúp nhận biết nhanh cách xây dựng.
+- Sao chép liên kết GitHub hoặc tóm tắt dự án; có thông báo nếu trình duyệt không cấp quyền clipboard.
+- Có tab chuyển giữa AVATAR PARADE và portfolio; các nút tab dùng được bằng bàn phím.
 - Không dùng framework, dịch vụ bên thứ ba hay thu thập dữ liệu.
 
 ## Chạy thử
@@ -49,10 +52,11 @@ Không cần cài dependency hoặc chạy lệnh build. Clipboard có thể ch�
 
 Các phép thử thủ công, trạng thái và minh chứng được theo dõi tại [docs/evidence-index.md](docs/evidence-index.md). Một số tương tác đã được thử trên trình duyệt cục bộ; các phép thử yêu cầu GitHub Pages vẫn chưa xác minh.
 
-- GitHub Pages đã hoạt động; quy trình deploy hiện báo thành công. Các kết quả kiểm thử giao diện trên URL live được ghi tại [docs/evidence-index.md](docs/evidence-index.md).
+- GitHub Pages đã hoạt động. Các kết quả kiểm thử giao diện trên URL live được ghi tại [docs/evidence-index.md](docs/evidence-index.md).
 - Chưa kiểm thử trên thiết bị di động thật, nhiều trình duyệt hoặc bằng Lighthouse.
 - Chưa có email liên hệ; hiện dùng liên kết GitHub thay vì địa chỉ email mẫu.
 - Nguồn/giấy phép của ảnh nền chưa được xác minh; cần bổ sung thông tin nguồn trước khi phát hành công khai.
+- AVATAR PARADE là concept; bình chọn trên trang chỉ mô phỏng tại trình duyệt, không kết nối Roblox, TikTok LIVE hay lưu kết quả lên máy chủ.
 
 ## Nguồn và khai báo AI
 

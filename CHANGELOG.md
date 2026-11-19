@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## V10 — sở thích và dự án AVATAR PARADE
+Ngày: 19/11/2026
+
+**Thay đổi**
+- Bổ sung sáu sở thích nổi bật, mô tả cụ thể đam mê phát triển game, Roblox Studio, TikTok LIVE, công nghệ, khởi nghiệp online và nghe nhạc.
+- Đưa AVATAR PARADE — concept Roblox × TikTok LIVE — thành dự án chính; mô tả vòng chơi, bình luận, chấm điểm, quà cổ vũ và bảng xếp hạng.
+- Thêm minh họa sân khấu game bằng CSS và bản demo bình chọn avatar chạy ngay trên trình duyệt.
+- Làm mới đồ họa bằng tông màu neon, thẻ glass, lưới nền, bố cục dự án và animation; giữ hỗ trợ giảm chuyển động.
+- Bổ sung nút sao chép tóm tắt dự án; cập nhật README và hồ sơ kiểm thử.
+
+**Lưu ý:** dự án đang được trình bày như concept; demo bình chọn không kết nối dịch vụ trực tiếp hay gửi/lưu dữ liệu.
+
 ## V9 — hoàn thiện giao diện và trải nghiệm
 Ngày: 18/11/2026
 
