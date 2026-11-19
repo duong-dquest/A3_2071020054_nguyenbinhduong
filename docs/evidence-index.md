@@ -1,0 +1,45 @@
+# Bảng minh chứng
+
+Quy tắc: chưa thử thì ghi **Chưa kiểm tra**. Ảnh chụp phải cắt bỏ tab lạ, email/tài khoản, thông báo. Link minh chứng phải mở được bằng cửa sổ ẩn danh.
+
+| Mã | Tuyên bố | Phép thử | Kết quả thật | Minh chứng |
+|----|----------|----------|--------------|------------|
+| E1 | Menu cuộn tới đúng 4 mục và tô sáng mục đang xem | Bấm từng mục menu trên URL Pages | Đạt trên Pages; cả 4 mục (19/11/2026) | |
+| E2 | Ảnh đại diện và ảnh nền hiển thị | Mở URL Pages, xem tab Network (không 404) | Đạt trên Pages; avatar và ảnh nền tải được (19/11/2026) | |
+| E3 | `css/style.css` được tải trên Pages | Tab Network: trạng thái 200 | Đạt trên Pages; stylesheet v12 đã tải (19/11/2026) | |
+| E4 | Liên kết liên hệ mở đúng hồ sơ GitHub | Bấm "Mở GitHub", xác nhận hồ sơ | Chưa kiểm tra | |
+| E5 | Không tràn ngang ở nhiều kích thước màn hình | DevTools responsive, kiểm tra `scrollWidth` | Đạt trên Pages ở 320 / 360 / 390 / 600 / 768 / 1280px (19/11/2026) | |
+| E6 | URL Pages khớp phiên bản nộp | Đối chiếu commit triển khai và nội dung URL live | Đạt; workflow Pages triển khai commit [`a73d1a0`](https://github.com/duong-dquest/trang-gioi-thieu-ban-than/commit/a73d1a06d1854606191abdcc25387624be43e54f) thành công (19/11/2026) | |
+| E7 | Link minh chứng mở được | Mở bằng cửa sổ ẩn danh | Chưa kiểm tra | |
+| E8 | Tab Dự án đổi nội dung | Bấm 2 tab; dùng phím ← → | Đã bỏ trong V11; kết quả Pages bên dưới ghi nhận phiên bản V10 | |
+| E9 | Nút "Sao chép liên kết GitHub" hoạt động | Bấm nút, dán thử vào ô bất kỳ | Chưa kiểm tra | |
+| E10 | Menu không vỡ trên màn hình 320px | DevTools 320px, kiểm tra cuộn ngang | Đạt trên Pages; không tràn ngang (19/11/2026) | |
+| E11 | Hiệu ứng xuất hiện khi cuộn không che nội dung | Cuộn qua các khu vực và kiểm tra trạng thái từng phần | Đạt trên Pages; 10 phần tử hiện đầy đủ, có cơ chế dự phòng (19/11/2026) | |
+| E12 | Nút lên đầu trang chỉ hiện sau khi cuộn | Cuộn xuống quá 420px, bấm nút, kiểm tra quay về đầu | Đạt trên Pages (18/11/2026) | |
+| E13 | Chuyển động được giảm theo cài đặt hệ thống | Bật Reduce motion và kiểm tra chuyển động/hiệu ứng cuộn | Đạt trên Pages (19/11/2026) | |
+| E14 | Liên kết GitHub mở đúng repository | Bấm liên kết ở Dự án và Liên hệ | Chưa kiểm tra | |
+| E15 | Nội dung vẫn hiện khi trình duyệt không hỗ trợ IntersectionObserver | Tắt/hạn chế IntersectionObserver, nạp lại trang | Chưa kiểm tra | |
+| E16 | Chọn một avatar và bình chọn thử | Chọn avatar; gửi một lượt; kiểm tra điểm/trạng thái và thử bấm lại | Đã bỏ trong V11; kết quả Pages bên dưới ghi nhận phiên bản V10 | |
+| E17 | Chuyển tab giữa AVATAR PARADE và portfolio | Dùng phím ← →; kiểm tra panel tương ứng | Đã bỏ trong V11; kết quả Pages bên dưới ghi nhận phiên bản V10 | |
+| E18 | Sao chép tóm tắt concept AVATAR PARADE | Bấm nút sao chép và kiểm tra phản hồi clipboard | Nút báo sao chép thành công trên Pages; chưa xác nhận thao tác dán (19/11/2026) | |
+| E19 | Mở/đóng phần mô tả mở rộng của dự án | Bấm “Khám phá ý tưởng”; mở rồi đóng bằng bàn phím và chuột | Chưa kiểm tra | |
+| E20 | Nền phong cảnh và màu giao diện ở màn hình hẹp | Kiểm tra 320px, 768px, 1280px; xác nhận không tràn ngang | Chưa kiểm tra | |
+| E21 | Tinh linh lượn, thỉnh thoảng trò chuyện và phản hồi khi bấm | Theo dõi vị trí/lời thoại tự động; bấm và kiểm tra lời thoại mới | Đạt cục bộ; đường bay đổi vị trí mềm, bong bóng tự hiện và click phản hồi (19/11/2026) | |
+| E22 | Sao nền và Reduce motion | Kiểm tra các lớp sao; bật Reduce motion và xác nhận animation dừng | Đạt cục bộ; animation tinh linh dừng, không tràn ngang ở 320px (19/11/2026) | |
+| E23 | Hình tinh linh nền trong suốt | Tải `assets/fairy.png`; kiểm tra ảnh hiển thị và không còn nền trắng | Đạt cục bộ; ảnh PNG tải đúng với alpha trong suốt (19/11/2026) | |
+
+| E24 | Kéo, thả tinh linh bằng chuột | Kéo tinh linh; kiểm tra vị trí đổi, biểu cảm “sợ hãi” khi đang bị giữ | Đạt cục bộ (Chromium headless, 1280 và 320px; 19/11/2026); chưa thử cảm ứng thật | |
+| E25 | Bấm vào tinh linh cho biểu cảm và lời thoại | Bấm tinh linh; kiểm tra bong bóng thoại hiện | Đạt cục bộ (Chromium headless; 19/11/2026); chưa duyệt bằng mắt từng biểu cảm trong trang | |
+| E26 | Thả cá: tinh linh bay tới ăn | Bấm vào chỗ trống; kiểm tra cá xuất hiện rồi biến mất sau khi tinh linh tới | Đạt cục bộ (Chromium headless; 19/11/2026) | |
+| E27 | Ném tinh linh, tự ngủ, né con trỏ | Thả khi đang kéo nhanh; chờ 30 giây; rê chuột lại gần | Chưa kiểm tra | |
+| E28 | Reduce motion với V14 | Bật Reduce motion; kiểm tra không tự bay, không hạt sáng, không ném | Chưa kiểm tra | |
+| E29 | Sao ngẫu nhiên, sao băng, vệt sáng chuột | Đếm lớp sao; chờ sao băng; rê chuột | Đạt một phần cục bộ: tạo 30 sao (16 ở 320px), không lỗi console, không tràn ngang; chưa xác nhận sao băng bằng mắt (19/11/2026) | |
+| E30 | 12 ảnh biểu cảm nền trong suốt | Ghép ảnh `assets/fairy/*.webp` trên nền kem; xem viền và nhãn chữ | Đạt cục bộ; bảng ghép đã xem, nhãn chữ đã loại (19/11/2026) | |
+
+| E31 | Nhãn “01 / PLAY”… nằm đúng góc thẻ sở thích | Mở trang, xem 6 thẻ ở 1280px | Đạt cục bộ (Chromium headless; 19/11/2026) | |
+| E32 | Thẻ NITRO DASH hiển thị, mở/đóng cơ chế, không tràn ngang | Bấm “Xem cơ chế game”; kiểm tra 320px và 1280px | Đạt cục bộ (Chromium headless; 19/11/2026) | |
+| E33 | Sao chép tóm tắt NITRO DASH | Bấm nút sao chép và dán thử | Chưa kiểm tra | |
+| E34 | Lời thoại mới vừa bong bóng; không còn biểu cảm ngại ngùng | Bấm tinh linh nhiều lần, đọc lời thoại ở 320px | Đã bỏ tệp biểu cảm; chưa duyệt từng lời thoại trên màn hình nhỏ | |
+
+Ghi chú: Từ V9, chức năng sao chép dùng liên kết GitHub thay cho email mẫu.
+Ghi chú: các kết quả trên Pages hiện có thuộc phiên bản V10; các thay đổi V11–V15 cần kiểm tra lại sau khi triển khai.
