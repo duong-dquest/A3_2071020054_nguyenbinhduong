@@ -88,7 +88,8 @@
   var BASE = 'assets/fairy/';
   var FILES = ['idle', 'vui', 'buon', 'tuc-gian', 'buon-ngu', 'ngac-nhien', 'lie-xeo', 'van-on', 'thanh-cong', 'hoang-mang', 'sigma', 'khinh-bi', 'an-va',
     'meme-sigma', 'khoc-like', 'pop-cat', 'side-eye', 'this-is-fine', 'success-kid', 'smudge', 'hoang-mang-meme', 'grumpy', 'doge', 'ngo-ngang', 'siuuu'];
-  FILES.forEach(function (n) { new Image().src = BASE + n + '.webp'; });
+  var VER = '?v=23';
+  FILES.forEach(function (n) { new Image().src = BASE + n + '.webp' + VER; });
   // Tên tâm trạng trong code ánh xạ sang một hoặc nhiều ảnh; không có ảnh hợp lệ thì quay về hình mặc định (idle).
   var ALIAS = {
     vui: ['vui', 'thanh-cong'], 'buon-ba': ['buon', 'khoc-like'], 'tuc-gian': ['tuc-gian', 'grumpy'], 'buon-ngu': ['buon-ngu'],
@@ -97,11 +98,23 @@
     'van-on': ['van-on', 'this-is-fine'], 'khinh-bi': ['khinh-bi', 'doge'], 'pop-cat': ['pop-cat']
   };
   var curMood = 'idle';
-  art.addEventListener('error', function () { if (art.src.indexOf('idle.webp') < 0) art.src = BASE + 'idle.webp'; });
+  // Hai lớp ảnh chồng nhau để chuyển biểu cảm mượt; ảnh lỗi thì quay về hình mặc định.
+  var next = fairy.querySelector('.fairy-next'), body = fairy.querySelector('.fairy-body');
+  var front = art, back = next;
+  function onImgError(e) { if (e.target.src.indexOf('idle.webp') < 0) e.target.src = BASE + 'idle.webp'; }
+  art.addEventListener('error', onImgError); next.addEventListener('error', onImgError);
+  function swapImage(file) {
+    var url = BASE + file + '.webp' + VER;
+    if (front.src.indexOf(url) >= 0) return;
+    back.src = url; back.style.transitionDelay = '0s'; back.style.opacity = '1';
+    front.style.transitionDelay = '0.17s'; front.style.opacity = '0';
+    var tmp = front; front = back; back = tmp;
+  }
 
   var W = fairy.offsetWidth, H = fairy.offsetHeight;
   var x = window.innerWidth - W - 8, y = window.innerHeight - H - 8;
   var tx = x, ty = y, vx = 0, vy = 0, face = 1;
+  var faceCur = 1, sq = 0, sqv = 0, ang = 0, angv = 0, lastOrigin = '';
   var mode = 'wander'; // wander | held | throw | landed | goto | sleep
   var restUntil = performance.now() + 1500;
   var lastActive = Date.now(), lastTrail2 = 0, lastDodge = 0, catches = 0, lastReaction = -1;
@@ -115,9 +128,10 @@
   function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
   function setMood(name, ms) {
     curMood = name;
-    art.src = BASE + (ALIAS[name] ? pick(ALIAS[name]) : name) + '.webp';
+    swapImage(ALIAS[name] ? pick(ALIAS[name]) : name);
+    sqv += 0.05;
     window.clearTimeout(moodTimer);
-    if (ms) moodTimer = window.setTimeout(function () { art.src = BASE + 'idle.webp'; }, ms);
+    if (ms) moodTimer = window.setTimeout(function () { swapImage('idle'); }, ms);
   }
   function say(text, ms) {
     bubble.textContent = text;
@@ -185,6 +199,7 @@
     var i;
     do { i = Math.floor(Math.random() * REACTIONS.length); } while (i === lastReaction);
     lastReaction = i;
+    sqv += 0.07;
     var r = REACTIONS[i], c = center();
     catches++; emit('catch');
     if (catches % 5 === 0) r = { m: 'quay', t: 'Bắt được ' + catches + ' lần rồi. Cậu rảnh dữ vậy trời!', k: 'spin' };
@@ -291,7 +306,7 @@
     if (!down.moved && Math.hypot(e.clientX - down.sx, e.clientY - down.sy) < 6) return;
     if (!down.moved) {
       down.moved = true; mode = 'held'; heldAt = performance.now(); catches++; emit('catch');
-      fairy.classList.add('is-held');
+      fairy.classList.add('is-held'); sq = 0.14; sqv = 0;
       setMood('so-hai'); say(catches % 5 === 0 ? 'Lần thứ ' + catches + '? Cậu rảnh dữ vậy trời!' : pick(LINES.held), 2600);
       spark(x + W / 2, y + H / 2, 8, 70);
     }
@@ -313,7 +328,7 @@
     if (!wasDrag) { react(true); mode = 'wander'; rest(1200); return; }
     if (!reduced && Math.hypot(vx, vy) > 7) {
       vx = clamp(vx, -30, 30); vy = clamp(vy, -30, 30);
-      mode = 'throw';
+      mode = 'throw'; angv = 0; sqv += 0.05;
       setMood('ngac-nhien', 1800); say(pick(LINES.fly), 2200); trick('spin', 900);
     } else {
       mode = 'wander'; wanderTarget(); rest(1800);
@@ -336,19 +351,21 @@
     }
   }, { passive: true });
 
-  // ---- Vòng chuyển động ----
+  // ---- Vòng chuyển động: lò xo, nghiêng theo vận tốc, co giãn khi đổi mặt hoặc hạ cánh ----
   var last = performance.now();
   function frame(t) {
     var dt = Math.min(48, t - last) / 16.7; last = t;
     var b = bounds(), bob = 0;
     if (mode === 'throw') {
       vy += 0.45 * dt; x += vx * dt; y += vy * dt;
-      if (x < b.minX) { x = b.minX; vx = Math.abs(vx) * 0.7; }
-      if (x > b.maxX) { x = b.maxX; vx = -Math.abs(vx) * 0.7; }
+      ang += vx * 1.3 * dt; angv = 0;
+      if (x < b.minX) { x = b.minX; vx = Math.abs(vx) * 0.7; sq = -0.12; }
+      if (x > b.maxX) { x = b.maxX; vx = -Math.abs(vx) * 0.7; sq = -0.12; }
       if (y < b.minY) { y = b.minY; vy = Math.abs(vy) * 0.6; }
       if (y >= b.maxY) {
-        y = b.maxY; vy = -Math.abs(vy) * 0.55; vx *= 0.9;
-        if (Math.abs(vy) < 2.2 && Math.abs(vx) < 1.2) {
+        var hitV = Math.abs(vy);
+        y = b.maxY; vy = -hitV * 0.55; vx *= 0.9; sq = -Math.min(0.3, hitV * 0.02); sqv = 0;
+        if (hitV < 2.2 && Math.abs(vx) < 1.2) {
           vx = 0; vy = 0; mode = 'landed';
           setMood('so-hai', 2000); say(pick(LINES.landed), 2600);
           window.setTimeout(function () { if (mode === 'landed') { mode = 'wander'; wanderTarget(); rest(600); } }, 2000);
@@ -356,19 +373,38 @@
       }
       if (Math.abs(vx) > 1) face = vx < 0 ? -1 : 1;
     } else if (!reduced && (mode === 'wander' || mode === 'goto' || mode === 'sleep')) {
-      var k = mode === 'goto' ? 0.07 : 0.02;
+      var k = mode === 'goto' ? 0.03 : 0.011, d = mode === 'goto' ? 0.27 : 0.17;
       var dx = tx - x, dy = ty - y, dist = Math.hypot(dx, dy);
-      if (mode === 'wander' && dist < 8 && t > restUntil) { wanderTarget(); rest(rand(900, 2600)); }
-      x += dx * k * dt; y += dy * k * dt;
-      if (dist > 14 && Math.abs(dx) > 18) face = dx < 0 ? -1 : 1;
-      if (mode === 'goto' && dist < 14) {
+      if (mode === 'wander' && dist < 12 && Math.hypot(vx, vy) < 0.7 && t > restUntil) { wanderTarget(); rest(rand(900, 2600)); }
+      vx += (dx * k - vx * d) * dt; vy += (dy * k - vy * d) * dt;
+      var spd = Math.hypot(vx, vy);
+      if (spd > 15) { vx *= 15 / spd; vy *= 15 / spd; }
+      x = clamp(x + vx * dt, b.minX, b.maxX); y = clamp(y + vy * dt, b.minY, b.maxY);
+      if (Math.abs(vx) > 0.9) face = vx < 0 ? -1 : 1;
+      if (mode === 'goto' && dist < 16) {
         if (arrive) { var cb = arrive; arrive = null; mode = 'wander'; rest(2500); cb(); } else eatTreat();
       }
-      if (mode !== 'sleep') bob = Math.sin(t / 430) * 5;
-      if (dist > 70 && t - lastTrail2 > 110) { lastTrail2 = t; spark(x + W / 2 - face * 18, y + H * 0.7, 1, 30); }
+      if (mode !== 'sleep') bob = Math.sin(t / 430) * 5 + Math.sin(t / 190) * 1.5;
+      if (spd > 3.5 && t - lastTrail2 > 110) { lastTrail2 = t; spark(x + W / 2 - face * 18, y + H * 0.7, 1, 30); }
+    } else if (mode === 'held') {
+      vx *= Math.pow(0.9, dt); vy *= Math.pow(0.9, dt);
     }
+    // Nghiêng như con lắc: treo lơ lửng khi bị giữ, ngả theo hướng bay khi lượn
+    var tgt = reduced ? 0 : (mode === 'held' ? clamp(-vx * 2.2, -35, 35) : clamp(vx * 1.2, -12, 12));
+    if (mode !== 'throw') {
+      ang = ((ang + 180) % 360 + 360) % 360 - 180;
+      angv += ((tgt - ang) * 0.12 - angv * (mode === 'held' ? 0.1 : 0.38)) * dt; ang += angv * dt;
+    }
+    sqv += (-sq * 0.2 - sqv * 0.26) * dt; sq += sqv * dt;
+    var breathe = reduced || mode === 'held' ? 0 : Math.sin(t / 650) * 0.016;
+    var sx = 1 - sq * 0.7 - breathe * 0.7, sy = 1 + sq + breathe;
+    if (!reduced && mode !== 'throw') { var stretch = Math.min(0.12, Math.hypot(vx, vy) * 0.008); sx += stretch; sy -= stretch * 0.6; }
+    faceCur += (face - faceCur) * Math.min(1, 0.2 * dt);
+    if (reduced) { ang = 0; sq = 0; sqv = 0; }
+    body.style.transform = 'rotate(' + ang.toFixed(1) + 'deg) scale(' + (sx * faceCur).toFixed(3) + ',' + sy.toFixed(3) + ')';
+    var origin = mode === 'held' ? '50% 14%' : '50% 90%';
+    if (origin !== lastOrigin) { body.style.transformOrigin = origin; lastOrigin = origin; }
     fairy.style.transform = 'translate3d(' + Math.round(x) + 'px,' + Math.round(y + bob) + 'px,0)';
-    fairy.style.setProperty('--face', face);
     window.requestAnimationFrame(frame);
   }
   window.requestAnimationFrame(frame);

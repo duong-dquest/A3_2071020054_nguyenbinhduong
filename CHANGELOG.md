@@ -1,5 +1,32 @@
 # CHANGELOG
 
+## V21 — bướm tự nhiên hơn, đũa phép nhỏ gọn
+Ngày: 20/11/2026
+
+**Thay đổi**
+- Bướm vẽ lại bằng SVG nhìn từ trên xuống thay cho emoji; nhỏ hơn (14–18px), hơi trong, vỗ cánh bằng cách khép mở hai cánh, thân xoay theo hướng bay.
+- Bay lượn uốn lượn thay cho đường thẳng: tốc độ lúc nhanh lúc chậm, đôi lúc lượn không vỗ cánh, tự quay lại khi chạm mép màn hình và bay né khi con trỏ lại gần để không che nội dung đang đọc.
+- Con trỏ đũa phép vẽ lại nhỏ hơn (26px thay 32px): cán có viền sáng, ngôi sao bốn cánh có viền trắng nên thấy rõ trên cả nền sáng và tối.
+
+## V20 — hiệu ứng ban ngày và chuyển cảnh ngày/đêm
+Ngày: 20/11/2026
+
+**Thay đổi**
+- Ban ngày có mặt trời tỏa tia xoay chậm, mây trôi, bướm vỗ cánh bay ngang và phấn hoa vàng bay lên; ban đêm các lớp này mờ dần, mặt trăng hiện lên cùng sao, đom đóm và sao băng.
+- Chuyển ngày/đêm bằng vòng tròn loe ra từ nút 🌙/☀️ (View Transitions); trình duyệt chưa hỗ trợ thì dùng màn phủ mờ dần. Tinh linh bình luận và có hạt sáng khi đổi cảnh.
+- Nếu người xem chưa tự chọn, trang tự đổi ngày/đêm đúng giờ (19:00 và 05:00) ngay cả khi đang mở.
+- Reduce motion: đổi cảnh tức thì, tắt bướm và phấn hoa, mây và mặt trời đứng yên.
+
+## V19 — ảnh tinh linh sắc nét hơn, chuyển động mềm mại
+Ngày: 19/11/2026
+
+**Thay đổi**
+- Tách lại 25 ảnh tinh linh: viền mềm (trước đây viền cứng răng cưa), khử rìa màu kem, độ phân giải 450×345 (cao hơn 1,5 lần), tránh tách nhầm váy và lông pastel thành nền; ảnh nhẹ (tổng khoảng 540 KB, tệp lớn nhất khoảng 30 KB).
+- Chuyển động bằng lò xo (tăng tốc và giảm tốc tự nhiên, hơi nảy khi tới nơi) thay cho nội suy tuyến tính.
+- Nghiêng theo vận tốc, kéo giãn theo hướng bay, nhún thở khi nghỉ; khi bị giữ thì đung đưa như con lắc, khi bị ném thì lộn vòng và bẹp xuống khi chạm đất.
+- Đổi biểu cảm bằng hiệu ứng chồng mờ kèm một cú nhún; quay mặt trái/phải mượt thay vì lật đột ngột.
+- Thêm `?v=23` vào đường dẫn ảnh để trình duyệt không dùng ảnh cũ trong cache. Reduce motion vẫn tắt nghiêng, nhún và tự bay.
+
 ## V18 — thay bộ biểu cảm tinh linh (24 biểu cảm)
 Ngày: 19/11/2026
 

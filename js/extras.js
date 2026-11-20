@@ -81,6 +81,86 @@
   }
   setNight(load('night', hour >= 19 || hour < 5), false);
 
+  // ---- Hiệu ứng ban ngày: mặt trời, mây, bướm, phấn hoa; ban đêm: mặt trăng ----
+  var sky = el('div', 'sky'), skyDay = el('div', 'sky-day'), flutter = el('div', 'flutter');
+  sky.setAttribute('aria-hidden', 'true'); flutter.setAttribute('aria-hidden', 'true');
+  skyDay.appendChild(el('span', 'sun'));
+  for (var n1 = 0; n1 < 4; n1++) {
+    var sCloud = el('span', 'cloud');
+    sCloud.style.cssText = '--y:' + (6 + n1 * 13) + '%;--s:' + (0.7 + Math.random() * 0.8).toFixed(2) + ';--o:' + (0.5 + Math.random() * 0.3).toFixed(2) + ';--t:' + (90 + Math.random() * 70).toFixed(0) + 's;--d:-' + (Math.random() * 90).toFixed(0) + 's';
+    skyDay.appendChild(sCloud);
+  }
+  sky.appendChild(skyDay); sky.appendChild(el('span', 'moon')); document.body.insertBefore(sky, document.body.firstChild);
+  for (var n2 = 0; n2 < 14; n2++) {
+    var sMote = el('span', 'mote');
+    sMote.style.cssText = '--x:' + (Math.random() * 98).toFixed(0) + '%;--s:' + (4 + Math.random() * 5).toFixed(1) + 'px;--t:' + (14 + Math.random() * 14).toFixed(0) + 's;--d:-' + (Math.random() * 20).toFixed(0) + 's';
+    flutter.appendChild(sMote);
+  }
+  (document.querySelector('.star-field') || document.body).appendChild(flutter);
+  // Bướm: vẽ bằng SVG nhìn từ trên xuống, bay lượn tự nhiên, đôi lúc lượn không vỗ cánh và né con trỏ
+  var BF_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><g class="wing"><ellipse cx="6.5" cy="8" rx="6" ry="5" transform="rotate(-25 6.5 8)" style="fill:var(--c1)"/><ellipse cx="7.5" cy="16" rx="4.2" ry="4" transform="rotate(20 7.5 16)" style="fill:var(--c2)"/><circle cx="5" cy="8" r="1.4" fill="#fff" opacity=".7"/></g><g class="wing"><ellipse cx="17.5" cy="8" rx="6" ry="5" transform="rotate(25 17.5 8)" style="fill:var(--c1)"/><ellipse cx="16.5" cy="16" rx="4.2" ry="4" transform="rotate(-20 16.5 16)" style="fill:var(--c2)"/><circle cx="19" cy="8" r="1.4" fill="#fff" opacity=".7"/></g><rect x="11.1" y="4.5" width="1.8" height="14.5" rx=".9" fill="#3b2a26"/><path d="M12 5.5 L9.6 1.6 M12 5.5 L14.4 1.6" stroke="#3b2a26" stroke-width=".7" stroke-linecap="round" fill="none"/></svg>';
+  var bflies = [], mx = -999, my = -999, TAU = Math.PI * 2;
+  window.addEventListener('pointermove', function (e) { mx = e.clientX; my = e.clientY; }, { passive: true });
+  if (!reduced) {
+    [['#f08a4b', '#f6c453'], ['#5f9fe6', '#b9d8f7'], ['#e57fa8', '#f6b6cf']].forEach(function (c, i) {
+      var b = el('span', 'bfly', BF_SVG), sz = 14 + i * 2;
+      b.style.cssText = '--c1:' + c[0] + ';--c2:' + c[1] + ';--f:' + (0.22 + i * 0.03) + 's;width:' + sz + 'px;height:' + sz + 'px';
+      flutter.appendChild(b);
+      bflies.push({ el: b, x: Math.random() * window.innerWidth, y: window.innerHeight * (0.2 + Math.random() * 0.6), h: Math.random() * TAU, s: 0.8 + Math.random() * 0.5, p: Math.random() * 100, glEnd: 0 });
+    });
+    var bl = performance.now();
+    (function bloop(t) {
+      var dt = Math.min(48, t - bl) / 16.7; bl = t;
+      if (!document.hidden && !root.classList.contains('night')) {
+        var vw = window.innerWidth, vh = window.innerHeight;
+        bflies.forEach(function (o) {
+          o.p += dt * 0.012;
+          o.h = (((o.h + (Math.sin(o.p * 1.3) * 0.04 + Math.sin(o.p * 0.41) * 0.035) * dt) % TAU) + TAU) % TAU;
+          var steer = null, near = Math.hypot(o.x - mx, o.y - my) < 110;
+          if (o.x < 30 || o.x > vw - 30 || o.y < 30 || o.y > vh - 30) steer = Math.atan2(vh / 2 - o.y, vw / 2 - o.x);
+          if (near) steer = Math.atan2(o.y - my, o.x - mx);
+          if (steer !== null) o.h += ((((steer - o.h + Math.PI * 3) % TAU) - Math.PI)) * 0.06 * dt;
+          if (t > o.glEnd && Math.random() < 0.003 * dt) { o.glEnd = t + 900; o.el.classList.add('glide'); }
+          else if (o.glEnd && t > o.glEnd) { o.glEnd = 0; o.el.classList.remove('glide'); }
+          var sp = o.s * (1 + Math.sin(o.p * 2.6) * 0.5) * (o.glEnd ? 0.45 : 1) * (near ? 2.2 : 1);
+          o.x += Math.cos(o.h) * sp * dt; o.y += (Math.sin(o.h) * sp + Math.sin(o.p * 6) * 0.3) * dt;
+          o.el.style.transform = 'translate3d(' + o.x.toFixed(1) + 'px,' + o.y.toFixed(1) + 'px,0) rotate(' + (o.h * 57.2958 + 90).toFixed(0) + 'deg)';
+        });
+      }
+      window.requestAnimationFrame(bloop);
+    })(bl);
+  }
+
+  // ---- Chuyển cảnh ngày/đêm ----
+  var flash = el('div', 'sky-flash'); document.body.appendChild(flash);
+  function swapTheme(on, manual, from) {
+    var done = function () {
+      if (!manual || !F()) return;
+      burst(10);
+      say(on ? pick(['Đêm rồi! Sao lên kìa ✨', 'Tối rồi, đom đóm vào ca đêm!']) : pick(['Trời sáng rồi! Cà phê đâu?', 'Nắng lên rồi, bướm ra chơi kìa!']), on ? 'pop-cat' : 'quay', 3200);
+    };
+    if (reduced) { setNight(on, manual); done(); return; }
+    if (document.startViewTransition && from) {
+      var r = from.getBoundingClientRect(), cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+      var rad = Math.ceil(Math.hypot(Math.max(cx, window.innerWidth - cx), Math.max(cy, window.innerHeight - cy)));
+      var vt = document.startViewTransition(function () { setNight(on, manual); });
+      vt.ready.then(function () {
+        root.animate({ clipPath: ['circle(0px at ' + cx + 'px ' + cy + 'px)', 'circle(' + rad + 'px at ' + cx + 'px ' + cy + 'px)'] },
+          { duration: 950, easing: 'cubic-bezier(0.65, 0, 0.35, 1)', pseudoElement: '::view-transition-new(root)' });
+      }).catch(function () {});
+      vt.finished.then(done, done);
+    } else {
+      flash.className = 'sky-flash on' + (on ? '' : ' day');
+      window.setTimeout(function () { setNight(on, manual); flash.classList.remove('on'); done(); }, 400);
+    }
+  }
+  // Chưa chọn tay thì tự đổi ngày/đêm đúng giờ ngay cả khi đang mở trang
+  window.setInterval(function () {
+    if (load('night', null) !== null) return;
+    var hh = new Date().getHours(), want = hh >= 19 || hh < 5;
+    if (want !== root.classList.contains('night')) swapTheme(want, false, nightBtn);
+  }, 60000);
+
   // ---- Tour ----
   var touring = false;
   var TOUR = [['top', 'Đây là chủ nhà. Trông hiền nhưng code dữ lắm.'], ['about', 'Sở thích, kỹ năng, mục tiêu… mà không có mục “ngủ”. Đáng ngờ!'],
@@ -197,7 +277,7 @@
     award('swarm'); say('Tớ nhân bản rồi! Bắt hết đi nào!', 'quay', 3600);
     ['vui', 'siuuu', 'meme-sigma'].forEach(function (m, i) {
       var im = el('img', 'clone'), c = F().center(), o = { el: im, x: c.cx, y: c.cy };
-      im.src = 'assets/fairy/' + m + '.webp'; im.alt = ''; im.draggable = false; document.body.appendChild(im); clones.push(o);
+      im.src = 'assets/fairy/' + m + '.webp?v=23'; im.alt = ''; im.draggable = false; document.body.appendChild(im); clones.push(o);
       im.addEventListener('click', function (e) {
         e.stopPropagation(); F().spark(o.x, o.y, 8, 60); pop(); im.remove(); clones.splice(clones.indexOf(o), 1);
         if (!clones.length) say('Hết bầy rồi… buồn ghê.', 'buon-ba', 3000);
@@ -263,7 +343,7 @@
     var k = b.getAttribute('data-dock');
     if (k === 'badges' || k === 'ask') { toggle(k); if (k === 'ask' && !panels.ask.hidden) askInput.focus(); }
     else if (k === 'tour') { Object.keys(panels).forEach(function (p) { panels[p].hidden = true; }); if (!touring) tour(0); }
-    else if (k === 'night') setNight(!root.classList.contains('night'), true);
+    else if (k === 'night') swapTheme(!root.classList.contains('night'), true, b);
     else if (k === 'sound') {
       snd.on = !snd.on; save('sound', snd.on);
       b.setAttribute('aria-pressed', String(snd.on)); b.textContent = snd.on ? '🔊' : '🔇';

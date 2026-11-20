@@ -57,5 +57,16 @@ Quy tắc: chưa thử thì ghi **Chưa kiểm tra**. Ảnh chụp phải cắt 
 | E46 | Mọi biểu cảm tải được, không 404, và hình mặc định vẫn hiện khi chưa có biểu cảm | Bấm tinh linh nhiều lần; theo dõi lỗi tải ảnh | Đạt cục bộ (Chromium headless; 19/11/2026) | |
 | E47 | Từng cặp tình huống và biểu cảm hợp ngữ cảnh | Thử bắt, ném, thả cá, ngủ, đêm khuya, game | Chưa kiểm tra từng tình huống | |
 
+| E48 | Ảnh tinh linh có viền mềm, không thủng, không còn rìa kem trên nền tối | Ghép ảnh lên nền tối và xem; đếm điểm ảnh bán trong suốt | Đạt cục bộ; đã xem bảng ghép trên nền tối (19/11/2026) | |
+| E49 | Chuyển động lò xo, nghiêng, co giãn, đổi mặt mượt, đung đưa khi bị giữ | Quan sát tinh linh lượn, bị giữ, bị ném, đổi biểu cảm | Chưa kiểm tra bằng mắt; chỉ xác nhận không lỗi và biến đổi được áp dụng (19/11/2026) | |
+| E50 | Ảnh mới không bị cache cũ trên Pages | Nạp lại trang sau khi triển khai, xem tab Network | Chưa kiểm tra | |
+
+| E51 | Hiệu ứng ban ngày hiển thị (mặt trời, mây, bướm, phấn hoa) và mờ đi khi sang đêm | Xem trang ban ngày; bật 🌙 và xem lại | Đạt cục bộ (Chromium headless; 20/11/2026); chưa đánh giá mật độ bằng mắt trên nhiều màn hình | |
+| E52 | Chuyển cảnh vòng tròn và phương án dự phòng | Bấm 🌙/☀️; thử lại khi tắt View Transitions | Đạt cục bộ (Chromium headless; 20/11/2026); chưa thử Safari, Firefox | |
+| E53 | Tự đổi ngày/đêm đúng giờ khi chưa chọn tay | Chờ qua mốc 19:00 hoặc 05:00 | Chưa kiểm tra | |
+
+| E54 | Bướm nhỏ, bay uốn lượn, quay lại khi chạm mép và né con trỏ | Quan sát bướm; rê chuột lại gần | Đạt cục bộ (Chromium headless): 3 bướm, vị trí đổi và nằm trong màn hình, bướm lùi xa khi con trỏ tới gần; chưa đánh giá độ tự nhiên bằng mắt (20/11/2026) | |
+| E55 | Con trỏ đũa phép rõ nét ở kích thước nhỏ | Xem ảnh phóng to trên nền sáng và tối; rê chuột trên trang | Đã xem ảnh phóng to; chưa kiểm tra con trỏ thật trên Safari, Firefox (20/11/2026) | |
+
 Ghi chú: Từ V9, chức năng sao chép dùng liên kết GitHub thay cho email mẫu.
-Ghi chú: các kết quả trên Pages hiện có thuộc phiên bản V10; các thay đổi V11–V18 cần kiểm tra lại sau khi triển khai.
+Ghi chú: các kết quả trên Pages hiện có thuộc phiên bản V10; các thay đổi V11–V21 cần kiểm tra lại sau khi triển khai.

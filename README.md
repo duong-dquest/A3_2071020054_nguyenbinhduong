@@ -14,6 +14,7 @@ Website giới thiệu Nguyễn Bình Dương, sinh viên ngành Công nghệ Th
 - Hỗ trợ bàn phím: liên kết bỏ qua điều hướng, trạng thái focus rõ ràng và phần mô tả dự án có thể mở bằng bàn phím.
 - Tinh linh 24 biểu cảm (12 dễ thương, 12 meme), lượn theo quỹ đạo mềm, tự trò chuyện; có thể kéo, thả, ném, thả cá cho ăn, tự ngủ và né con trỏ.
 - NITRO DASH chơi thử trên canvas; 12 huy hiệu; chế độ ngày/đêm; tour và ô hỏi đáp offline với tinh linh; nút “Đừng bấm”; easter egg; âm thanh WebAudio mặc định tắt. Dữ liệu (huy hiệu, coin, kỷ lục) chỉ lưu trên máy người xem bằng localStorage.
+- Ban ngày có mặt trời, mây, bướm và phấn hoa; ban đêm có trăng, sao, đom đóm; chuyển ngày/đêm bằng vòng tròn loe ra từ nút bấm.
 - Sao nền ngẫu nhiên, sao băng, vệt sáng theo chuột và ánh kim trên tên.
 - Hiệu ứng xuất hiện khi cuộn, ảnh đại diện chuyển động nhẹ và nút lên đầu trang.
 - Mục Về mình có thêm Học vấn, Kỹ năng hiện có và Mục tiêu; mục Dự án có ba thẻ (AVATAR PARADE, NITRO DASH, game bắn súng 2D).
