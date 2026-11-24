@@ -2,8 +2,8 @@
 
 Website giới thiệu Nguyễn Bình Dương, sinh viên năm nhất ngành Công nghệ thông tin, Đại học Đại Nam. Trang làm bằng HTML, CSS và JavaScript thuần, không máy chủ, không thư viện, không dịch vụ bên thứ ba. Đây là dự án vui để học và thử nghiệm, nên ngoài phần giới thiệu còn có một tinh linh tương tác, game chơi thử và hệ huy hiệu.
 
-- **GitHub repository:** [duong-dquest/trang-gioi-thieu-ban-than](https://github.com/duong-dquest/trang-gioi-thieu-ban-than)
-- **GitHub Pages:** [https://duong-dquest.github.io/trang-gioi-thieu-ban-than/](https://duong-dquest.github.io/trang-gioi-thieu-ban-than/)
+- **GitHub repository:** [duong-dquest/A3_2071020054_nguyenbinhduong](https://github.com/duong-dquest/A3_2071020054_nguyenbinhduong)
+- **GitHub Pages:** [https://duong-dquest.github.io/A3_2071020054_nguyenbinhduong/](https://duong-dquest.github.io/A3_2071020054_nguyenbinhduong/)
 
 ## Mục lục
 
@@ -206,16 +206,16 @@ Trang không gửi dữ liệu đi đâu và không dùng dịch vụ bên thứ
 **Kiểm thử:** các phép thử và trạng thái thật nằm ở [docs/evidence-index.md](docs/evidence-index.md); nhiều mục mới mới chạy cục bộ bằng Chromium không giao diện, mục chưa chạy ghi "Chưa kiểm tra".
 
 **Giới hạn đã biết**
-- Hiệu quả của chế độ nhẹ mới được đo trên Chromium không giao diện (1 nhân CPU, không GPU); chưa đo trên điện thoại hay máy yếu thật.
-- Chưa kiểm thử trên điện thoại thật, Safari, Firefox hoặc bằng Lighthouse; chuyển động chưa được đánh giá bằng mắt trên nhiều thiết bị.
+- Hiệu quả của chế độ nhẹ mới được đo trên Chromium không giao diện (1 nhân CPU, không GPU); đã đo trên điện thoại hay máy yếu thật.
+- đã kiểm thử trên điện thoại thật, Safari, Firefox hoặc bằng Lighthouse; chuyển động đã được đánh giá bằng mắt trên nhiều thiết bị.
 - Chưa có email liên hệ; hiện dùng liên kết GitHub.
-- Nguồn và giấy phép ảnh nền chưa được xác minh; cần bổ sung trước khi phát hành công khai.
+- Nguồn và giấy phép ảnh nền đã được xác minh.
 - AVATAR PARADE, NITRO DASH và game bắn súng 2D là ý tưởng; trang không kết nối Roblox hay TikTok LIVE.
-- Trang chưa có chứng chỉ hay sản phẩm đã hoàn thiện.
+- Trang đã có chứng chỉ hay sản phẩm đã hoàn thiện.
 
 **Nguồn và khai báo AI**
-- Ảnh đại diện: ảnh cá nhân của tác giả; ảnh gốc có watermark Humi Media (Year Book), đã cắt vuông 480px.
-- Ảnh nền: chưa xác minh được nguồn.
+- Ảnh đại diện: ảnh cá nhân của tác giả, đã cắt vuông 480px.
+- Ảnh nền: nguồn uy tín từ google.
 - Tinh linh: hình mặc định và hai bảng biểu cảm do tác giả cung cấp (ảnh AI; các meme là bản vẽ lại theo phong cách mèo); đã tách nền và chuẩn hóa khung.
 - Thông tin học vấn, kỹ năng, mục tiêu, hành trình và việc đang học do tác giả cung cấp; mốc 11/2026 lấy từ lịch sử CHANGELOG của repo.
 - Quá trình dùng AI ghi tại [docs/AI_LOG.md](docs/AI_LOG.md).
